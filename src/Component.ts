@@ -1,5 +1,6 @@
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
+import models from './model/models';
 
 
 /**
@@ -11,11 +12,17 @@ export default class Component extends UIComponent {
 		manifest: "json"
 	};
 
-	private contentDensityClass : string;
+	private contentDensityClass: string;
 
-	public init() : void {
+	public init(): void {
 		// call the base component's init function
 		super.init();
+
+		// set the device model
+		this.setModel(models.createDeviceModel(), "device");
+
+		// create the views based on the url/hash
+		this.getRouter().initialize();
 	}
 
 	/**
@@ -25,7 +32,7 @@ export default class Component extends UIComponent {
 	 * @public
 	 * @return {string} css class, either 'sapUiSizeCompact' or 'sapUiSizeCozy' - or an empty string if no css class should be set
 	 */
-	public getContentDensityClass() : string {
+	public getContentDensityClass(): string {
 		if (this.contentDensityClass === undefined) {
 			// check whether FLP has already set the content density class; do nothing in this case
 			if (document.body.classList.contains("sapUiSizeCozy") || document.body.classList.contains("sapUiSizeCompact")) {
