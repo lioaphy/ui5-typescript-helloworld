@@ -9,9 +9,21 @@
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"ach": "set-ach"
+		"ach": "set-ach",
+		"dataSources": {
+			"graphql": {
+				"type": "GraphQL",
+				"uri": "http://localhost:7001/graphql",
+				"settings": {
+					"ws": "ws://localhost:7001/graphql"
+				}
+			}
+		}
 	},
-	"sap.fiori": {},
+	"sap.fiori": {
+		"archeType": "analytical",
+		"registrationIds": []
+	},
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {},
@@ -81,6 +93,11 @@
 					"pattern": "Statistics",
 					"name": "statistics",
 					"target": "statistics"
+				},
+				{
+					"pattern": "inspectionList",
+					"name": "inspectionList",
+					"target": "inspectionList"
 				}
 			],
 			"targets": {
@@ -91,6 +108,10 @@
 				"statistics": {
 					"viewId": "statistics",
 					"viewName": "Statistics"
+				},
+				"inspectionList": {
+					"viewId": "inspectionList",
+					"viewName": "inspection/List"
 				}
 			}
 		}

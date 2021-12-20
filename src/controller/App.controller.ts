@@ -55,8 +55,13 @@ export default class App extends Controller {
 	public onItemSelect(oEvent: Event) {
 		var oItem = oEvent.getParameter('item');
 		var sKey = oItem.getKey();
+		console.log((this.getOwnerComponent().getModel('side') as JSONModel).getData())
 		// if you click on home, settings or statistics button, call the navTo function
-		if ((sKey === "home" || sKey === "masterSettings" || sKey === "statistics" || sKey === "pack")) {
+		if ((sKey === "home"
+			|| sKey === "masterSettings"
+			|| sKey === "statistics"
+			|| sKey === "pack"
+			|| sKey === "inspectionList")) {
 			// if the device is phone, collaps the navigation side of the app to give more space
 			if (Device.system.phone) {
 				this.onSideNavButtonPress();

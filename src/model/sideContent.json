@@ -8,6 +8,13 @@
 			"items": []
 		},
 		{
+			"title": "Inspection",
+			"icon": "sap-icon://home",
+			"expanded": true,
+			"key": "inspectionList",
+			"items": []
+		},
+		{
 			"title": "Pack",
 			"icon": "sap-icon://home",
 			"expanded": true,

@@ -1,3 +1,12 @@
+import {
+	ApolloClient,
+	split,
+	HttpLink,
+	InMemoryCache,
+} from "@apollo/client/core";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
+import Control from "sap/ui/core/Control";
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
 import models from './model/models';
@@ -11,7 +20,7 @@ export default class Component extends UIComponent {
 	public static metadata = {
 		manifest: "json"
 	};
-
+	public apolloClient: ApolloClient<any>;
 	private contentDensityClass: string;
 
 	public init(): void {
@@ -24,7 +33,7 @@ export default class Component extends UIComponent {
 		// create the views based on the url/hash
 		this.getRouter().initialize();
 	}
-
+	
 	/**
 	 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy
 	 * design mode class should be set, which influences the size appearance of some controls.
