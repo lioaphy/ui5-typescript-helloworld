@@ -55,7 +55,6 @@ export default class App extends Controller {
 	public onItemSelect(oEvent: Event) {
 		var oItem = oEvent.getParameter('item');
 		var sKey = oItem.getKey();
-		console.log((this.getOwnerComponent().getModel('side') as JSONModel).getData())
 		// if you click on home, settings or statistics button, call the navTo function
 		if ((sKey === "home"
 			|| sKey === "masterSettings"

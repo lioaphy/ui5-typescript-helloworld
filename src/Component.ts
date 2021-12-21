@@ -1,12 +1,6 @@
 import {
-	ApolloClient,
-	split,
-	HttpLink,
-	InMemoryCache,
+	ApolloClient
 } from "@apollo/client/core";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
-import Control from "sap/ui/core/Control";
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
 import models from './model/models';
@@ -30,10 +24,15 @@ export default class Component extends UIComponent {
 		// set the device model
 		this.setModel(models.createDeviceModel(), "device");
 
+		function name(this: any, params: any) {
+			console.log(this)
+			console.log(params)
+		}
+
 		// create the views based on the url/hash
-		this.getRouter().initialize();
+		this.getRouter().attachBeforeRouteMatched(name).initialize();
 	}
-	
+
 	/**
 	 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy
 	 * design mode class should be set, which influences the size appearance of some controls.
