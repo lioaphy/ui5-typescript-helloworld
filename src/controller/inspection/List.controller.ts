@@ -1,11 +1,11 @@
 import { ApolloClient, gql, HttpLink, InMemoryCache, split } from "@apollo/client/core";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
-import Controller from "sap/ui/core/mvc/Controller";
 import BindingMode from "sap/ui/model/BindingMode";
 import JSONModel from "sap/ui/model/json/JSONModel";
 // @ts-ignore
 import BindingParser from "sap/ui/base/BindingParser";
+import BaseController from "../../component/Base.controller";
 
 const GET_SIP = gql`
   query{
@@ -35,65 +35,16 @@ const GET_SIP = gql`
 /**
  * @namespace ui5.typescript.helloworld.controller.inspection
  */
-export default class List extends Controller {
-
-  public client: ApolloClient<any>;
-  public apollo: any;
+export default class List extends BaseController {
 
   public onInit(): void {
-    // determine the GraphQL datasource
-    const dataSources = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources");
-    const graphQLServices = Object.keys(dataSources).filter((ds) => {
-      return dataSources[ds].type == "GraphQL";
-    });
-
-    // the GraphQL service is the first found datasource entry
-    const graphQLService = dataSources[graphQLServices.shift()];
-    console.log(graphQLService)
-
-    const httpLink = new HttpLink({
-      uri: graphQLService.uri,
-    });
-
-    const wsLink = new WebSocketLink({
-      uri: graphQLService.settings.ws,
-      options: {
-        reconnect: true,
-      },
-    });
-
-    // The split function takes three parameters:
-    //
-    // * A function that's called for each operation to execute
-    // * The Link to use for an operation if the function returns a "truthy" value
-    // * The Link to use for an operation if the function returns a "falsy" value
-    const splitLink = split(
-      ({ query }) => {
-        const definition = getMainDefinition(query);
-        return definition.kind === "OperationDefinition" && definition.operation === "subscription";
-      },
-      wsLink,
-      httpLink
-    );
-
-    this.client = new ApolloClient({
-      name: "ui5-client",
-      version: "1.0",
-      link: splitLink,
-      cache: new InMemoryCache(),
-      connectToDevTools: true,
-      defaultOptions: {
-        watchQuery: { fetchPolicy: "no-cache" },
-        query: { fetchPolicy: "no-cache" },
-        mutate: { fetchPolicy: "no-cache" },
-      },
-    });
+    super.onInit();
 
     const model = new JSONModel();
     model.setDefaultBindingMode(BindingMode.OneWay);
     this.getView().setModel(model);
 
-    this.client.query({ query: GET_SIP }).then((result) => {
+    this.$query({ query: GET_SIP }).then((result) => {
       console.log(result);
 
       const binding = BindingParser.complexParser("{/sip}");
