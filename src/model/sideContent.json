@@ -9,14 +9,14 @@
 		},
 		{
 			"title": "Inspection",
-			"icon": "sap-icon://home",
+			"icon": "sap-icon://approvals",
 			"expanded": true,
 			"key": "inspectionList",
 			"items": []
 		},
 		{
 			"title": "Pack",
-			"icon": "sap-icon://home",
+			"icon": "sap-icon://blank-tag",
 			"expanded": true,
 			"key": "pack",
 			"items": []

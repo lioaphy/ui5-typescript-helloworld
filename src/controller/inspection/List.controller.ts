@@ -1,6 +1,4 @@
-import { ApolloClient, gql, HttpLink, InMemoryCache, split } from "@apollo/client/core";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
+import { gql } from "@apollo/client/core";
 import BindingMode from "sap/ui/model/BindingMode";
 import JSONModel from "sap/ui/model/json/JSONModel";
 // @ts-ignore
@@ -55,6 +53,9 @@ export default class List extends BaseController {
         const model = this.getView().getModel(modelName) as JSONModel;
         model.setProperty(path, value);
       }
+    }).catch(reason => {
+
+      console.log(reason)
     })
 
   }
