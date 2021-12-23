@@ -21,6 +21,8 @@ import UI5Element from "sap/ui/core/Element";
 import Controller from "sap/ui/core/mvc/Controller";
 import UIComponent from "sap/ui/core/UIComponent";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import Component from "../Component";
+import Router from "sap/ui/core/routing/Router";
 
 /**
  * @namespace ui5.typescript.helloworld.controller
@@ -30,7 +32,7 @@ export default class App extends Controller {
 	_bExpanded = true;
 
 	public onInit() {
-		this.getView().addStyleClass((this.getOwnerComponent() as any).getContentDensityClass());
+		this.getView().addStyleClass((this.getOwnerComponent() as Component).getContentDensityClass());
 
 		// if the app starts on desktop devices with small or meduim screen size, collaps the sid navigation
 		if (Device.resize.width <= 1024) {
@@ -45,6 +47,24 @@ export default class App extends Controller {
 				this._bExpanded = (oDevice.name === "Desktop");
 			}
 		});
+
+		var hash = UIComponent.getRouterFor(this).getHashChanger().getHash();
+		console.log(hash);
+		var oModel = new JSONModel({
+			visible: !(hash === 'login')
+		})
+		oModel.setDefaultBindingMode("OneWay")
+		this.getView().setModel(oModel)
+
+		var that = this;
+		function onRouteMatched(this: Router, param: any) {
+			var hash = this.getHashChanger().getHash();
+			console.log(hash);
+			(that.getView().getModel() as JSONModel).setProperty('visible', !(hash === 'login'));
+		}
+
+		UIComponent.getRouterFor(this).attachRouteMatched(onRouteMatched);
+
 	}
 
 	/**
@@ -60,7 +80,8 @@ export default class App extends Controller {
 			|| sKey === "masterSettings"
 			|| sKey === "statistics"
 			|| sKey === "pack"
-			|| sKey === "inspectionList")) {
+			|| sKey === "inspectionList"
+			|| sKey === "login")) {
 			// if the device is phone, collaps the navigation side of the app to give more space
 			if (Device.system.phone) {
 				this.onSideNavButtonPress();

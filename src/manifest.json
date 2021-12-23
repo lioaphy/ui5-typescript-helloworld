@@ -13,7 +13,7 @@
 		"dataSources": {
 			"graphql": {
 				"type": "GraphQL",
-				"uri": "http://localhost:7001/graphql",
+				"uri": "/graphql",
 				"settings": {
 					"ws": "ws://localhost:7001/graphql"
 				}
@@ -98,12 +98,21 @@
 					"pattern": "inspectionList",
 					"name": "inspectionList",
 					"target": "inspectionList"
+				},
+				{
+					"pattern": "login",
+					"name": "login",
+					"target": "login"
 				}
 			],
 			"targets": {
 				"home": {
 					"viewId": "home",
 					"viewName": "Home"
+				},
+				"login": {
+					"viewId": "login",
+					"viewName": "Login"
 				},
 				"statistics": {
 					"viewId": "statistics",

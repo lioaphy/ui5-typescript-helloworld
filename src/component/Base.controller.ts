@@ -1,5 +1,5 @@
 import { ApolloCache, InMemoryCache } from '@apollo/client/cache';
-import { ApolloClient, OperationVariables, QueryOptions, ApolloQueryResult, SubscriptionOptions, FetchResult, DefaultContext, MutationOptions, HttpLink, split } from '@apollo/client/core';
+import { ApolloClient, OperationVariables, QueryOptions, ApolloQueryResult, SubscriptionOptions, FetchResult, DefaultContext, MutationOptions, HttpLink, split, gql } from '@apollo/client/core';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import Controller from 'sap/ui/core/mvc/Controller';
@@ -38,6 +38,7 @@ export default class Base extends Controller {
 
     const httpLink = new HttpLink({
       uri: graphQLService.uri,
+      credentials: 'same-origin'
     });
 
     const wsLink = new WebSocketLink({
@@ -76,6 +77,13 @@ export default class Base extends Controller {
     this.$query = this.client.query.bind(this.client);
     this.$mutate = this.client.mutate.bind(this.client);
     this.$subscribe = this.client.subscribe.bind(this.client);
+
+    this.$query({
+      query: gql`mutation login{
+      LogIn(username:"S0437", password:"lioaphy", org_id:385){
+        username
+      }
+    }` })
   }
   /**
    * Convenience method for getting the view model by name.

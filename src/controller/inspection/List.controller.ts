@@ -5,7 +5,7 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 import BindingParser from "sap/ui/base/BindingParser";
 import BaseController from "../../component/Base.controller";
 
-const GET_SIP = gql`
+const GET_SIP = gql(`
   query{
   InspectSIPPagination{
     items{
@@ -28,7 +28,7 @@ const GET_SIP = gql`
     }
   }
 }
-`;
+`);
 
 /**
  * @namespace ui5.typescript.helloworld.controller.inspection

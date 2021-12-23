@@ -1,6 +1,8 @@
 import {
 	ApolloClient
 } from "@apollo/client/core";
+import Control from "sap/ui/core/Control";
+import View from "sap/ui/core/mvc/View";
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
 import models from './model/models';
@@ -12,6 +14,9 @@ import models from './model/models';
 export default class Component extends UIComponent {
 
 	public static metadata = {
+		interfaces: [
+			"sap.ui.core.IAsyncContentCreation"
+		],
 		manifest: "json"
 	};
 	public apolloClient: ApolloClient<any>;
@@ -24,13 +29,18 @@ export default class Component extends UIComponent {
 		// set the device model
 		this.setModel(models.createDeviceModel(), "device");
 
-		function name(this: any, params: any) {
-			console.log(this)
-			console.log(params)
-		}
-
 		// create the views based on the url/hash
-		this.getRouter().attachBeforeRouteMatched(name).initialize();
+		this.getRouter().initialize();
+	}
+
+	public async createContent() {
+		console.log(this.getRouter().getHashChanger().getHash())
+		var oView = await View.create({
+			viewName: "ui5.typescript.helloworld.view.App",
+			type: "XML",
+			id: "app"
+		});
+		return oView;
 	}
 
 	/**

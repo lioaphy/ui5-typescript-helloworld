@@ -55,6 +55,11 @@
 			"title": "Legal",
 			"icon": "sap-icon://compare",
 			"key": "Legal was pressed"
+		},
+		{
+			"title": "Login",
+			"icon": "sap-icon://compare",
+			"key": "login"
 		}
 	],
 	"masterSettings": [
