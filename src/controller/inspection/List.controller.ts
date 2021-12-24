@@ -4,7 +4,6 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 // @ts-ignore
 import BindingParser from "sap/ui/base/BindingParser";
 import BaseController from "../../component/Base.controller";
-import MessageToast from "sap/m/MessageToast";
 import ObjectListItem from "sap/m/ObjectListItem";
 
 const GET_SIP = gql(`
@@ -46,8 +45,6 @@ export default class List extends BaseController {
     this.getView().setModel(model);
 
     this.$query({ query: GET_SIP }).then((result) => {
-      console.log(result);
-
       const binding = BindingParser.complexParser("{/sip}");
       if (binding) {
         const modelName = binding.model;
@@ -59,16 +56,11 @@ export default class List extends BaseController {
     }).catch(reason => {
       console.log(reason)
     })
-
   }
 
   public onPress(oEvent: any) {
-    var oItem = oEvent.getSource() as ObjectListItem;
-    var oData = oItem.getBindingContext().getObject() as any;
-    this.getRouter().navTo("sipDetail", {
-      sipId: oData._id
-    })
-    console.log(oData._id)
-    MessageToast.show('oEvent')
+    var oListItem = oEvent.getSource() as ObjectListItem;
+    var oItem = oListItem.getBindingContext().getObject() as any;
+    this.getRouter().navTo("sipDetail", { sipId: oItem._id })
   }
 }
