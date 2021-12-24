@@ -77,7 +77,7 @@
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
-				"controlId": "mainContents",
+				"controlId": "appId",
 				"viewType": "XML",
 				"controlAggregation": "pages",
 				"viewPath": "ui5.typescript.helloworld.view",
@@ -113,23 +113,40 @@
 			"targets": {
 				"home": {
 					"viewId": "home",
-					"viewName": "Home"
+					"viewName": "Home",
+					"parent": "layout",
+					"controlId": "mainContents",
+					"controlAggregation": "pages"
 				},
 				"login": {
 					"viewId": "login",
-					"viewName": "Login"
+					"viewName": "Login",
+					"viewLevel": 1
+				},
+				"layout": {
+					"viewName": "Layout",
+					"viewLevel": 2
 				},
 				"statistics": {
 					"viewId": "statistics",
-					"viewName": "Statistics"
+					"viewName": "Statistics",
+					"parent": "layout",
+					"controlId": "mainContents",
+					"controlAggregation": "pages"
 				},
 				"sip": {
 					"viewId": "inspectionList",
-					"viewName": "inspection/List"
+					"viewName": "inspection/List",
+					"parent": "layout",
+					"controlId": "mainContents",
+					"controlAggregation": "pages"
 				},
 				"sipDetail": {
 					"viewId": "sipDetail",
-					"viewName": "inspection/Detail"
+					"viewName": "inspection/Detail",
+					"parent": "layout",
+					"controlId": "mainContents",
+					"controlAggregation": "pages"
 				}
 			}
 		}

@@ -1,13 +1,10 @@
 import { gql } from "@apollo/client/core";
 import BindingMode from "sap/ui/model/BindingMode";
 import JSONModel from "sap/ui/model/json/JSONModel";
-// @ts-ignore
-import BindingParser from "sap/ui/base/BindingParser";
 import BaseController from "../../component/Base.controller";
 import History from "sap/ui/core/routing/History";
-import MessageToast from "sap/m/MessageToast";
-import ObjectListItem from "sap/m/ObjectListItem";
-import UIComponent from "sap/ui/core/UIComponent";
+// @ts-ignore
+import BindingParser from "sap/ui/base/BindingParser";
 
 const GET_SIP = gql(`
 query InspectSIPFindById($_id: MongoID!) {
