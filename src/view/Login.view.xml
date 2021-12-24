@@ -1,4 +1,4 @@
-<mvc:View height="100%" controllerName="ui5.typescript.helloworld.controller.App"
+<mvc:View height="100%" controllerName="ui5.typescript.helloworld.controller.Login"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:tnt="sap.tnt">

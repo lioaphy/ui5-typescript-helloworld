@@ -2,7 +2,7 @@
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:tnt="sap.tnt">
-  <Page showHeader="false">
+  <Page showHeader="true" showNavButton="true" navButtonPress=".onNavBack" title="{path:'/data/sip_id'}">
     <landmarkInfo>
       <PageAccessibleLandmarkInfo rootRole="Region" rootLabel="{i18n>Statistics_rootLabel}" contentRole="Main" contentLabel="{i18n>Statistics_contentLabel}"/>
     </landmarkInfo>
@@ -10,7 +10,6 @@
       <Panel id="statisticsContainer" accessibleRole="Region" class="sapUiNoContentPadding">
         <headerToolbar>
           <Toolbar>
-            <Title text="{path:'/data/sip_id'}" level="H3" textAlign="Left"/>
             <ToolbarSpacer/>
             <Button id="refresh" icon="sap-icon://refresh" press=".onRefresh" tooltip="{i18n>refreshButtonTooltip}"/>
           </Toolbar>

@@ -33,16 +33,6 @@ export default class Component extends UIComponent {
 		this.getRouter().initialize();
 	}
 
-	public async createContent() {
-		console.log(this.getRouter().getHashChanger().getHash())
-		var oView = await View.create({
-			viewName: "ui5.typescript.helloworld.view.App",
-			type: "XML",
-			id: "app"
-		});
-		return oView;
-	}
-
 	/**
 	 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy
 	 * design mode class should be set, which influences the size appearance of some controls.

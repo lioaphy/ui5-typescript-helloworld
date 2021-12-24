@@ -4,8 +4,10 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 // @ts-ignore
 import BindingParser from "sap/ui/base/BindingParser";
 import BaseController from "../../component/Base.controller";
+import History from "sap/ui/core/routing/History";
 import MessageToast from "sap/m/MessageToast";
 import ObjectListItem from "sap/m/ObjectListItem";
+import UIComponent from "sap/ui/core/UIComponent";
 
 const GET_SIP = gql(`
 query InspectSIPFindById($_id: MongoID!) {
@@ -63,13 +65,24 @@ export default class Detail extends BaseController {
     oRouter.getRoute("sipDetail").attachMatched(this._onRouteMatched, this);
   }
 
+  onNavBack() {
+    var oHistory = History.getInstance();
+    var sPreviousHash = oHistory.getPreviousHash();
+
+    if (sPreviousHash !== undefined) {
+      window.history.go(-1);
+    } else {
+      var oRouter = this.getRouter();
+      oRouter.navTo("sip", {}, {}, true);
+    }
+  }
+
   _onRouteMatched(oEvent: any) {
     var oArgs = oEvent.getParameter("arguments");
     var oView = this.getView();
 
     this.$query({ query: GET_SIP, variables: { _id: oArgs.sipId } }).then((result) => {
 
-      console.log(result)
       const binding = BindingParser.complexParser("{/data}");
       if (binding) {
         const modelName = binding.model;

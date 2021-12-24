@@ -48,22 +48,22 @@ export default class App extends Controller {
 			}
 		});
 
-		var hash = UIComponent.getRouterFor(this).getHashChanger().getHash();
-		console.log(hash);
 		var oModel = new JSONModel({
-			visible: !(hash === 'login')
+			visible: true
 		})
 		oModel.setDefaultBindingMode("OneWay")
 		this.getView().setModel(oModel)
 
-		var that = this;
-		function onRouteMatched(this: Router, param: any) {
-			var hash = this.getHashChanger().getHash();
-			console.log(hash);
-			(that.getView().getModel() as JSONModel).setProperty('visible', !(hash === 'login'));
-		}
+		// var hash = UIComponent.getRouterFor(this).getHashChanger().getHash();
+		// console.log(hash);
+		// var that = this;
+		// function onRouteMatched(this: Router, param: any) {
+		// 	var hash = this.getHashChanger().getHash();
+		// 	console.log(hash);
+		// 	(that.getView().getModel() as JSONModel).setProperty('visible', !(hash === 'login'));
+		// }
 
-		UIComponent.getRouterFor(this).attachRouteMatched(onRouteMatched);
+		// UIComponent.getRouterFor(this).attachRouteMatched(onRouteMatched);
 
 	}
 
