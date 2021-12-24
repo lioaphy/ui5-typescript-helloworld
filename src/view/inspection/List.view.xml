@@ -27,7 +27,7 @@
         </Column>
       </columns>
       <items>
-        <ColumnListItem>
+        <ColumnListItem press=".onPress" type="Navigation">
           <cells>
             <Text text="{sip_id}"/>
             <Text text="{part_number}"/>

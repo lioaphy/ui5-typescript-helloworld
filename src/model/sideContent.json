@@ -8,10 +8,10 @@
 			"items": []
 		},
 		{
-			"title": "Inspection",
+			"title": "SIP",
 			"icon": "sap-icon://approvals",
 			"expanded": true,
-			"key": "inspectionList",
+			"key": "sip",
 			"items": []
 		},
 		{

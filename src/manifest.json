@@ -95,9 +95,14 @@
 					"target": "statistics"
 				},
 				{
-					"pattern": "inspectionList",
-					"name": "inspectionList",
-					"target": "inspectionList"
+					"pattern": "sip",
+					"name": "sip",
+					"target": "sip"
+				},
+				{
+					"pattern": "sip/{sipId}",
+					"name": "sipDetail",
+					"target": "sipDetail"
 				},
 				{
 					"pattern": "login",
@@ -118,9 +123,13 @@
 					"viewId": "statistics",
 					"viewName": "Statistics"
 				},
-				"inspectionList": {
+				"sip": {
 					"viewId": "inspectionList",
 					"viewName": "inspection/List"
+				},
+				"sipDetail": {
+					"viewId": "sipDetail",
+					"viewName": "inspection/Detail"
 				}
 			}
 		}

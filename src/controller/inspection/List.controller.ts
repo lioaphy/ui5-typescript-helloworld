@@ -4,11 +4,14 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 // @ts-ignore
 import BindingParser from "sap/ui/base/BindingParser";
 import BaseController from "../../component/Base.controller";
+import MessageToast from "sap/m/MessageToast";
+import ObjectListItem from "sap/m/ObjectListItem";
 
 const GET_SIP = gql(`
   query{
   InspectSIPPagination{
     items{
+      _id
       sip_id
       sampling_plan
       inspection_level
@@ -54,10 +57,18 @@ export default class List extends BaseController {
         model.setProperty(path, value);
       }
     }).catch(reason => {
-
       console.log(reason)
     })
 
   }
 
+  public onPress(oEvent: any) {
+    var oItem = oEvent.getSource() as ObjectListItem;
+    var oData = oItem.getBindingContext().getObject() as any;
+    this.getRouter().navTo("sipDetail", {
+      sipId: oData._id
+    })
+    console.log(oData._id)
+    MessageToast.show('oEvent')
+  }
 }

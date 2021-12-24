@@ -80,7 +80,7 @@ export default class App extends Controller {
 			|| sKey === "masterSettings"
 			|| sKey === "statistics"
 			|| sKey === "pack"
-			|| sKey === "inspectionList"
+			|| sKey === "sip"
 			|| sKey === "login")) {
 			// if the device is phone, collaps the navigation side of the app to give more space
 			if (Device.system.phone) {
