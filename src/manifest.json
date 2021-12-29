@@ -77,11 +77,13 @@
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
-				"controlId": "appId",
 				"viewType": "XML",
-				"controlAggregation": "pages",
 				"viewPath": "ui5.typescript.helloworld.view",
-				"async": true
+				"controlId": "appId",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": "notFound"
+				}
 			},
 			"routes": [
 				{
@@ -147,6 +149,10 @@
 					"parent": "layout",
 					"controlId": "mainContents",
 					"controlAggregation": "pages"
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
 				}
 			}
 		}

@@ -77,14 +77,8 @@ export default class Base extends Controller {
     this.$query = this.client.query.bind(this.client);
     this.$mutate = this.client.mutate.bind(this.client);
     this.$subscribe = this.client.subscribe.bind(this.client);
-
-    // this.$query({
-    //   query: gql`mutation login{
-    //   LogIn(username:"S0437", password:"lioaphy", org_id:385){
-    //     username
-    //   }
-    // }` })
   }
+  
   /**
    * Convenience method for getting the view model by name.
    * @public

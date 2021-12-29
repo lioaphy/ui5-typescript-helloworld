@@ -47,24 +47,6 @@ export default class App extends Controller {
 				this._bExpanded = (oDevice.name === "Desktop");
 			}
 		});
-
-		var oModel = new JSONModel({
-			visible: true
-		})
-		oModel.setDefaultBindingMode("OneWay")
-		this.getView().setModel(oModel)
-
-		// var hash = UIComponent.getRouterFor(this).getHashChanger().getHash();
-		// console.log(hash);
-		// var that = this;
-		// function onRouteMatched(this: Router, param: any) {
-		// 	var hash = this.getHashChanger().getHash();
-		// 	console.log(hash);
-		// 	(that.getView().getModel() as JSONModel).setProperty('visible', !(hash === 'login'));
-		// }
-
-		// UIComponent.getRouterFor(this).attachRouteMatched(onRouteMatched);
-
 	}
 
 	/**

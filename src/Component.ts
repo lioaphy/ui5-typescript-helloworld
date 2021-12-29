@@ -1,12 +1,6 @@
-import {
-	ApolloClient
-} from "@apollo/client/core";
-import Control from "sap/ui/core/Control";
-import View from "sap/ui/core/mvc/View";
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
 import models from './model/models';
-
 
 /**
  * @namespace ui5.typescript.helloworld
@@ -19,7 +13,6 @@ export default class Component extends UIComponent {
 		],
 		manifest: "json"
 	};
-	public apolloClient: ApolloClient<any>;
 	private contentDensityClass: string;
 
 	public init(): void {
