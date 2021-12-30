@@ -84,7 +84,7 @@ export default class Detail extends BaseController {
       if (binding) {
         const modelName = binding.model;
         const path = binding.path || `/data`; // defaults to entity
-        const value = result.data?.InspectSIPFindById;
+        const value = result.data.InspectSIPFindById;
         const model = oView.getModel(modelName) as JSONModel;
         model.setProperty(path, value);
       }

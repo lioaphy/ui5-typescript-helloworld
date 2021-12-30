@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client/core";
 import BindingMode from "sap/ui/model/BindingMode";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import ObjectListItem from "sap/m/ObjectListItem";
+import BaseController from "../../component/Base.controller";
 // @ts-ignore
 import BindingParser from "sap/ui/base/BindingParser";
-import BaseController from "../../component/Base.controller";
-import ObjectListItem from "sap/m/ObjectListItem";
 
 const GET_SIP = gql(`
   query{
@@ -49,7 +49,7 @@ export default class List extends BaseController {
       if (binding) {
         const modelName = binding.model;
         const path = binding.path || `/sip`; // defaults to entity
-        const value = result.data?.InspectSIPPagination?.items || [];
+        const value = result.data.InspectSIPPagination.items;
         const model = this.getView().getModel(modelName) as JSONModel;
         model.setProperty(path, value);
       }
